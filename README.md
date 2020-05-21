@@ -1,3 +1,13 @@
-#### Run 
-`mvn clean compile gatling:test -Dhost_url=http://localhost:8080/ -Drequest_url=api/v1/users  -Dusers=10 -Dduration=20`
+#### Run for create FO objects
+- Update the input params values in src/test/resources/application.properties and run below commands as per the requirements.
 
+    ``
+    mvn clean compile gatling:test -Dgatling.simulationClass=com.isom.service.test.ISOMCreateLoadTest
+    ``
+
+#### Run for GET FO objects
+- Update the input params values in src/test/resources/application.properties and run below commands as per the requirements.
+
+    ``
+    mvn clean compile gatling:test -Dgatling.simulationClass=com.isom.service.test.ISOMGetLoadTest
+    ``
