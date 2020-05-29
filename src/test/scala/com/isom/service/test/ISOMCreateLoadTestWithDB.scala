@@ -46,14 +46,8 @@ class ISOMCreateLoadTestWithDB extends Simulation {
   val headers = Map("Content-Type" -> HttpHeaderValues.ApplicationJson,
     "Accept" -> HttpHeaderValues.ApplicationJson
   )
-  var foIDsTOSave: Seq[String] = _
+
   var connection: Connection = null
-
-
-  val writeFOToCSVFile = {
-    val fos = new java.io.FileOutputStream("SavedFOIDList.csv")
-    new java.io.PrintWriter(fos, true)
-  }
 
   def getDBConnection(): Unit = {
     connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword)
@@ -75,14 +69,89 @@ class ISOMCreateLoadTestWithDB extends Simulation {
         .body(RawFileBody("isom-create-scenario1.json")).asJson
         .headers(headers)
         .check(status.is(200))
-        .check(jsonPath("$.id").findAll.transform { string => foIDsTOSave = string; string }.saveAs("foIDsTOSave"))
-    ).foreach("${foIDsTOSave}", "id") {
-    exec(session => {
+        .check(jsonPath("$.id").saveAs("id"))
+    )
+    .exec(session => {
       writeFOToDatabase(session("id").as[String])
       session
     })
-  }
+
+  val baseScenario2: ScenarioBuilder = scenario("isom-create-scenario-2")
+    .exec(
+      http("isom-create-scenario-2")
+        .post(requestUrl)
+        .body(RawFileBody("isom-create-scenario2.json")).asJson
+        .headers(headers)
+        .check(status.is(200))
+        .check(jsonPath("$.id").saveAs("id"))
+    )
+    .exec(session => {
+      writeFOToDatabase(session("id").as[String])
+      session
+    })
+
+  val baseScenario3: ScenarioBuilder = scenario("isom-create-scenario-3")
+    .exec(
+      http("isom-create-scenario-3")
+        .post(requestUrl)
+        .body(RawFileBody("isom-create-scenario3.json")).asJson
+        .headers(headers)
+        .check(status.is(200))
+        .check(jsonPath("$.id").saveAs("id"))
+    )
+    .exec(session => {
+      writeFOToDatabase(session("id").as[String])
+      session
+    })
+
+  val baseScenario4: ScenarioBuilder = scenario("isom-create-scenario-4")
+    .exec(
+      http("isom-create-scenario-4")
+        .post(requestUrl)
+        .body(RawFileBody("isom-create-scenario4.json")).asJson
+        .headers(headers)
+        .check(status.is(200))
+        .check(jsonPath("$.id").saveAs("id"))
+    )
+    .exec(session => {
+      writeFOToDatabase(session("id").as[String])
+      session
+    })
+
+  val baseScenario5: ScenarioBuilder = scenario("isom-create-scenario-5")
+    .exec(
+      http("isom-create-scenario-5")
+        .post(requestUrl)
+        .body(RawFileBody("isom-create-scenario5.json")).asJson
+        .headers(headers)
+        .check(status.is(200))
+        .check(jsonPath("$.id").saveAs("id"))
+    )
+    .exec(session => {
+      writeFOToDatabase(session("id").as[String])
+      session
+    })
+
+  val baseScenario6: ScenarioBuilder = scenario("isom-create-scenario-6")
+    .exec(
+      http("isom-create-scenario-6")
+        .post(requestUrl)
+        .body(RawFileBody("isom-create-scenario6.json")).asJson
+        .headers(headers)
+        .check(status.is(200))
+        .check(jsonPath("$.id").saveAs("id"))
+    )
+    .exec(session => {
+      writeFOToDatabase(session("id").as[String])
+      session
+    })
+
   setUp(
-    baseScenario1.inject(constantUsersPerSec(users1) during (duration1 seconds))
+    baseScenario1.inject(constantUsersPerSec(users1) during (duration1 seconds)),
+    baseScenario2.inject(constantUsersPerSec(users2) during (duration2 seconds)),
+    baseScenario3.inject(constantUsersPerSec(users3) during (duration3 seconds)),
+    baseScenario4.inject(constantUsersPerSec(users4) during (duration4 seconds)),
+    baseScenario5.inject(constantUsersPerSec(users5) during (duration5 seconds)),
+    baseScenario6.inject(constantUsersPerSec(users6) during (duration6 seconds))
   ).protocols(httpProtocol).assertions(global.successfulRequests.percent.is(throughput))
 }
