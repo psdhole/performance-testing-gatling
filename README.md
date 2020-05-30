@@ -1,16 +1,26 @@
-#### Run for create FO objects
-- Update the input params values in src/test/resources/application.properties and run below commands as per the requirements.
+#### Run for create FO objects for all scenarios
+
+- Update the input params values in src/test/resources/application.properties and run below command.
 
     ``
-    mvn clean compile gatling:test -Dgatling.simulationClass=com.isom.service.test.ISOMCreateLoadTest
+    mvn gatling:test -Dgatling.simulationClass=com.isom.service.simulations.ISOMCreateLoadTestCommon 
+    ``
+
+#### Run for create FO objects as per the specific scenario
+- Update the input params values in src/test/resources/application.properties and run below command as per the scenario.
+
+    ``
+    mvn gatling:test -Dgatling.simulationClass=com.isom.service.simulations.ISOMCreateLoadTest -Dscenario_name=isom-create-scenario2 -Dusers=5 -Dduration=10
     ``
 
 #### Run for GET FO objects
-- Update the input params values in src/test/resources/application.properties and run below commands as per the requirements.
+- Update the input params values in src/test/resources/application.properties and run below command.
 
     ``
-    mvn clean compile gatling:test -Dgatling.simulationClass=com.isom.service.test.ISOMGetLoadTest
+    mvn gatling:test -Dgatling.simulationClass=com.isom.service.simulations.ISOMGetLoadTest -Dusers=5 -Dduration=10
     ``
+
+
 
 #### Run MySQL instance locally
 
