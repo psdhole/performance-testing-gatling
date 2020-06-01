@@ -38,7 +38,7 @@
         use isom_Service;
         
         #create table
-        CREATE TABLE  id_table (fo_id varchar(100));
+        CREATE TABLE  id_table (sr_id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, fo_id varchar(100));
         
         #insert sample record
         INSERT INTO id_table (fo_id) VALUES ('1c238d20-a0b8-11ea-aafa-4de03f00b166');
