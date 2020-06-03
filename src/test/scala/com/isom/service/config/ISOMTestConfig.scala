@@ -35,6 +35,11 @@ class ISOMTestConfig extends Simulation {
   val getSQLQuery = conf.getString("isom-getSQLQuery")
   val idColumnName = conf.getString("isom-id-column")
 
+  val getScenarioName ="isom-get-scenario"
+  val createScenarioName ="isom-create-scenario"
+  val scenarioCsvFileName= "isom-create-scenarios.csv"
+  val scenarioExpression="${isom-create-scenario-name}"
+
   val httpProtocol: HttpProtocolBuilder = http.baseUrl(baseUrl)
 
   val headers = Map("Content-Type" -> HttpHeaderValues.ApplicationJson,

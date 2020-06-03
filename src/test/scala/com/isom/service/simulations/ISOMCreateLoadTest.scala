@@ -14,7 +14,6 @@ class ISOMCreateLoadTest extends Simulation {
   var testConfig: ISOMTestConfig = new ISOMTestConfig
   var dbConnection: ISOMDBConnection = new ISOMDBConnection
 
-  val scenarioName: String = System.getProperty("scenario_name", "isom-create-scenario-1")
   val users: Int = System.getProperty("users", "1").toInt
   val duration: Int = System.getProperty("duration", "1").toInt
 
@@ -22,11 +21,12 @@ class ISOMCreateLoadTest extends Simulation {
     dbConnection.getDBConnection()
   }
 
-  val baseScenario: ScenarioBuilder = scenario(scenarioName)
+  val baseScenario: ScenarioBuilder = scenario(testConfig.getScenarioName)
+    .feed(csv(testConfig.scenarioCsvFileName).circular)
     .exec(
-      http(scenarioName)
+      http(testConfig.scenarioExpression)
         .post(testConfig.requestUrl)
-        .body(RawFileBody(scenarioName + ".json")).asJson
+        .body(RawFileBody(testConfig.scenarioExpression + ".json")).asJson
         .headers(testConfig.headers)
         .check(status.is(200))
         .check(jsonPath("$.id").saveAs("id"))

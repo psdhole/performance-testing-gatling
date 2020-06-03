@@ -9,14 +9,13 @@ import io.gatling.jdbc.Predef.jdbcFeeder
 class ISOMGetLoadTest extends Simulation {
 
   var testConfig: ISOMTestConfig = new ISOMTestConfig
-  val scenarioName: String = System.getProperty("scenario_name", "isom-get-scenario")
   val users: Int = System.getProperty("users", "1").toInt
   val duration: Int = System.getProperty("duration", "1").toInt
 
-  val baseScenario1 = scenario(scenarioName)
+  val baseScenario1 = scenario(testConfig.getScenarioName)
     .feed(jdbcFeeder(testConfig.dbUrl, testConfig.dbUsername, testConfig.dbPassword, testConfig.getSQLQuery).circular)
     .exec(
-      http(scenarioName)
+      http(testConfig.getScenarioName)
         .get(testConfig.baseUrl + testConfig.apiUri + testConfig.idColumnName)
     )
 
