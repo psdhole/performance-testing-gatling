@@ -6,8 +6,8 @@
 
 - Use below commands to create MySQL instance , required database and table.
   
-       #Run docker container
-       docker run -d --name mysql -e MYSQL_ROOT_HOST=%  -e  MYSQL_ROOT_PASSWORD=root -v mysql-db:/var/lib/mysql -p 3306:3306 -d mysql/mysql-server	
+        #Run docker container
+        docker run -d --name mysql -e MYSQL_ROOT_HOST=%  -e  MYSQL_ROOT_PASSWORD=root -v mysql-db:/var/lib/mysql -p 3306:3306 -d mysql/mysql-server	
     
         #Connect to  the container
         docker exec -it mysql mysql -u root -p
@@ -16,26 +16,26 @@
         create database isom_Service;
         use isom_Service;
         
-        #create table
+        #Create table
         CREATE TABLE  id_table (sr_id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, fo_id varchar(100));
         
-        #insert sample record
+        #Insert sample record
         INSERT INTO id_table (fo_id) VALUES ('1c238d20-a0b8-11ea-aafa-4de03f00b166');
         
         #Get records from the table
         select * from id_table; 
        
-#### Run for create FO objects for all scenarios
+#### Run for create FO objects 
 - Update the input params values in src/test/resources/application.properties , scenario names in scenario_name.csv and run below command.
 
-       mvn clean compile gatling:test -Dgatling.simulationClass=com.isom.service.simulations.ISOMCreateLoadTest -Dusers=5 -Dduration=10
+        mvn clean compile gatling:test -Dgatling.simulationClass=com.isom.service.simulations.ISOMCreateLoadTest -Dusers=5 -Dduration=10
  
-#### Run for GET FO objects
+#### Run for get FO objects
 - Update the input params values in src/test/resources/application.properties and run below command.
 
-       mvn clean compile gatling:test -Dgatling.simulationClass=com.isom.service.simulations.ISOMGetLoadTest -Dusers=5 -Dduration=10
+        mvn clean compile gatling:test -Dgatling.simulationClass=com.isom.service.simulations.ISOMGetLoadTest -Dusers=5 -Dduration=10
  
-#### Verfiy test results
+#### Verify test results
 - Checkout the gatling reports for the last run test at below location.
     
         <project.basedir>/isom-test-reports
