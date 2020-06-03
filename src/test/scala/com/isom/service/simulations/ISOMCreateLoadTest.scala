@@ -22,11 +22,11 @@ class ISOMCreateLoadTest extends Simulation {
   }
 
   val baseScenario: ScenarioBuilder = scenario(testConfig.getScenarioName)
-    .feed(csv(testConfig.createScenarioCsvFileName).circular)
+    .feed(csv(testConfig.scenarioCsvFileName).circular)
     .exec(
-      http(testConfig.createScenarioExpression)
+      http(testConfig.scenarioExpression)
         .post(testConfig.requestUrl)
-        .body(RawFileBody(testConfig.createScenarioRequestPath + testConfig.createScenarioExpression + ".json")).asJson
+        .body(RawFileBody(testConfig.scenarioExpression + ".json")).asJson
         .headers(testConfig.headers)
         .check(status.is(200))
         .check(jsonPath("$.id").saveAs("id"))

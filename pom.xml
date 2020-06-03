@@ -121,8 +121,9 @@
                 <artifactId>gatling-maven-plugin</artifactId>
                 <version>${gatling-plugin.version}</version>
                 <configuration>
-                    <configFolder>src/test/resources/config</configFolder>
-                    <resultsFolder>isom-test-reports</resultsFolder>
+                    <dataFolder>src/test/resources/data</dataFolder>
+                    <resultsFolder>target/test-reports</resultsFolder>
+                    <requestBodiesFolder>src/test/resources</requestBodiesFolder>
                     <simulationsFolder>src/test/scala</simulationsFolder>
                     <runMultipleSimulations>true</runMultipleSimulations>
                     <compilerJvmArgs>

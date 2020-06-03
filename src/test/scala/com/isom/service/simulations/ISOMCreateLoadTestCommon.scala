@@ -24,7 +24,7 @@ class ISOMCreateLoadTestCommon extends Simulation {
     .exec(
       http("isom-create-scenario-1")
         .post(testConfig.requestUrl)
-        .body(RawFileBody("isom-create-scenarios-requests/isom-create-scenario1.json")).asJson
+        .body(RawFileBody("isom-create-scenario1.json")).asJson
         .headers(testConfig.headers)
         .check(status.is(200))
         .check(jsonPath("$.id").saveAs("id"))
@@ -38,7 +38,7 @@ class ISOMCreateLoadTestCommon extends Simulation {
     .exec(
       http("isom-create-scenario-2")
         .post(testConfig.requestUrl)
-        .body(RawFileBody("isom-create-scenarios-requests/isom-create-scenario2.json")).asJson
+        .body(RawFileBody("isom-create-scenario2.json")).asJson
         .headers(testConfig.headers)
         .check(status.is(200))
         .check(jsonPath("$.id").saveAs("id"))
@@ -52,7 +52,7 @@ class ISOMCreateLoadTestCommon extends Simulation {
     .exec(
       http("isom-create-scenario-3")
         .post(testConfig.requestUrl)
-        .body(RawFileBody("isom-create-scenarios-requests/isom-create-scenario3.json")).asJson
+        .body(RawFileBody("isom-create-scenario3.json")).asJson
         .headers(testConfig.headers)
         .check(status.is(200))
         .check(jsonPath("$.id").saveAs("id"))
@@ -66,7 +66,7 @@ class ISOMCreateLoadTestCommon extends Simulation {
     .exec(
       http("isom-create-scenario-4")
         .post(testConfig.requestUrl)
-        .body(RawFileBody("isom-create-scenarios-requests/isom-create-scenario4.json")).asJson
+        .body(RawFileBody("isom-create-scenario4.json")).asJson
         .headers(testConfig.headers)
         .check(status.is(200))
         .check(jsonPath("$.id").saveAs("id"))
@@ -80,7 +80,7 @@ class ISOMCreateLoadTestCommon extends Simulation {
     .exec(
       http("isom-create-scenario-5")
         .post(testConfig.requestUrl)
-        .body(RawFileBody("isom-create-scenarios-requests/isom-create-scenario5.json")).asJson
+        .body(RawFileBody("isom-create-scenario5.json")).asJson
         .headers(testConfig.headers)
         .check(status.is(200))
         .check(jsonPath("$.id").saveAs("id"))
@@ -94,7 +94,7 @@ class ISOMCreateLoadTestCommon extends Simulation {
     .exec(
       http("isom-create-scenario-6")
         .post(testConfig.requestUrl)
-        .body(RawFileBody("isom-create-scenarios-requests/isom-create-scenario6.json")).asJson
+        .body(RawFileBody("isom-create-scenario6.json")).asJson
         .headers(testConfig.headers)
         .check(status.is(200))
         .check(jsonPath("$.id").saveAs("id"))
