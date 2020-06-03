@@ -10,7 +10,7 @@ class ISOMTestConfig extends Simulation {
   val conf = ConfigFactory.load()
   val baseUrl = conf.getString("isom-baseUrl")
   val apiUri = conf.getString("isom-apiUri")
-  val requestUrl=baseUrl+apiUri
+  val requestUrl = baseUrl + apiUri
   val throughput = conf.getInt("isom-throughput")
   val maxResponseTime = conf.getInt("isom-max-response-time")
 
@@ -35,11 +35,11 @@ class ISOMTestConfig extends Simulation {
   val getSQLQuery = conf.getString("isom-getSQLQuery")
   val idColumnName = conf.getString("isom-id-column")
 
-  val getScenarioName ="isom-get-scenario"
-  val createScenarioName ="isom-create-scenario"
-  val scenarioCsvFileName= "isom-create-scenarios.csv"
-  val scenarioExpression="${isom-create-scenario-name}"
-
+  val getScenarioName = "isom-get-scenario"
+  val createScenarioName = "isom-create-scenario"
+  val createScenarioCsvFileName = "isom-create-scenarios.csv"
+  val createScenarioExpression = "${isom-create-scenario-name}"
+  val createScenarioRequestPath = "isom-create-scenarios-requests/"
   val httpProtocol: HttpProtocolBuilder = http.baseUrl(baseUrl)
 
   val headers = Map("Content-Type" -> HttpHeaderValues.ApplicationJson,
