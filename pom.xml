@@ -17,7 +17,7 @@
     <gatling-plugin.version>3.0.5</gatling-plugin.version>
     <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
     <scala-maven-plugin.version>4.3.0</scala-maven-plugin.version>
-    <com.google.guava.version>28.1-jre</com.google.guava.version>
+    <com.google.guava.version>29.0-jre</com.google.guava.version>
   </properties>
 
   <dependencyManagement>
